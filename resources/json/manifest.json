@@ -1,7 +1,7 @@
 {
     "background_color": "25b99a",
     "theme_color": "25b99a",
-    "description": "TodoList App",
+    "description": "Todo List App",
     "display": "standalone",
     "icons": [
       {
