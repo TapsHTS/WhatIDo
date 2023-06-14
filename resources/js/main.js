@@ -13,38 +13,39 @@ renderTodoList();
 document.getElementById('add').addEventListener('click', function () {
   var value = document.getElementById('item').value;
 
-  if (value.includes("@settings")) {
-    const restValue = value.replace("@settings", "")
+  if (value.includes("@paste")) {
+    const restValue = value.replace("@paste", "")
     data = JSON.parse(restValue)
     dataObjectUpdated();
     document.getElementById('item').value = '';
   }
 
+
   if (value === "@copy") {
-    navigator.clipboard.writeText(localStorage.getItem('todoList'));
+    document.getElementById('localstorage').innerText = localStorage.getItem('todoList');
     document.getElementById('item').value = '';
   }
 
-  if (value && !value.includes("@settings") && !value.includes("@copy")) {
+  if (value && !value.includes("@paste") && !value.includes("@copy")) {
     addItem(value);
   }
 });
 
 document.getElementById('item').addEventListener('keydown', function (e) {
   var value = this.value;
-  if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value  && !value.includes("@settings") && !value.includes("@copy")) {
+  if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value  && !value.includes("@paste") && !value.includes("@copy")) {
     addItem(value);
   }
 
-  if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value.includes("@settings")) {
-    const restValue = value.replace("@settings", "")
+  if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value.includes("@paste")) {
+    const restValue = value.replace("@paste", "")
     data = JSON.parse(restValue)
     dataObjectUpdated();
     document.getElementById('item').value = '';
   }
 
   if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value.includes("@copy")) {
-    navigator.clipboard.writeText(localStorage.getItem('todoList'));
+    document.getElementById('localstorage').innerText = localStorage.getItem('todoList');
     document.getElementById('item').value = '';
   }
 });
