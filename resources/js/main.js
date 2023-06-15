@@ -23,6 +23,7 @@ document.getElementById('add').addEventListener('click', function () {
 
 
   if (value === "@copy") {
+    navigator.clipboard.writeText(localStorage.getItem('todoList'));
     document.getElementById('localstorage').innerText = localStorage.getItem('todoList');
     document.getElementById('item').value = '';
   }
@@ -47,6 +48,7 @@ document.getElementById('item').addEventListener('keydown', function (e) {
   }
 
   if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value.includes("@copy")) {
+    navigator.clipboard.writeText(localStorage.getItem('todoList'));
     document.getElementById('localstorage').innerText = localStorage.getItem('todoList');
     document.getElementById('item').value = '';
   }
