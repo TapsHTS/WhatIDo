@@ -55,33 +55,6 @@ document.getElementById('item').addEventListener('keydown', function (e) {
 });
 
 function addItem(value) {
-  if (isLink(value)) {
-    addLinkItem(value);
-  } else {
-    addRegularItem(value);
-  }
-}
-
-function isLink(value) {
-  return /\[.+\]\(.+\)/.test(value);
-}
-
-function addLinkItem(value) {
-  var linkRegex = /\[(.+)\]\((.+)\)/;
-  var match = value.match(linkRegex);
-
-  var text = match[1];
-  var url = match[2];
-
-  addLinkItemToDOM(text, url);
-  document.getElementById('item').value = '';
-
-  var linkData = { text: text, url: url };
-  data.todo.push(linkData);
-  dataObjectUpdated();
-}
-
-function addRegularItem(value) {
   addItemToDOM(value);
   document.getElementById('item').value = '';
 
@@ -220,27 +193,6 @@ function addItemToDOM(text, completed) {
   buttons.appendChild(remove);
   buttons.appendChild(complete);
   item.appendChild(buttons);
-
-  list.insertBefore(item, list.childNodes[0]);
-}
-
-function addLinkItemToDOM(text, url) {
-  var list = document.getElementById('todo');
-
-  var item = document.createElement('li');
-  var textElement = document.createElement('span');
-  textElement.classList.add('text');
-  textElement.innerHTML = '<a href="' + url + '" target="_blank" class="link">' + text + '</a>';
-  item.appendChild(textElement);
-
-  var buttons = document.createElement('div');
-  buttons.classList.add('buttons');
-
-  var remove = document.createElement('button');
-  remove.classList.add('remove');
-  remove.innerHTML = removeSVG;
-  remove.addEventListener('click', removeItem);
-  buttons.appendChild(remove);
 
   list.insertBefore(item, list.childNodes[0]);
 }
