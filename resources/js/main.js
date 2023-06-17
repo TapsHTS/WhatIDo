@@ -55,33 +55,6 @@ document.getElementById('item').addEventListener('keydown', function (e) {
 });
 
 function addItem(value) {
-  if (isLink(value)) {
-    addLinkItem(value);
-  } else {
-    addRegularItem(value);
-  }
-}
-
-function isLink(value) {
-  return /\[.+\]\(.+\)/.test(value);
-}
-
-function addLinkItem(value) {
-  var linkRegex = /\[(.+)\]\((.+)\)/;
-  var match = value.match(linkRegex);
-
-  var text = match[1];
-  var url = match[2];
-
-  addLinkItemToDOM(text, url);
-  document.getElementById('item').value = '';
-
-  var linkData = { text: text, url: url };
-  data.todo.push(linkData);
-  dataObjectUpdated();
-}
-
-function addRegularItem(value) {
   addItemToDOM(value);
   document.getElementById('item').value = '';
 
@@ -221,38 +194,5 @@ function addItemToDOM(text, completed) {
   buttons.appendChild(complete);
   item.appendChild(buttons);
 
-  list.insertBefore(item, list.childNodes[0]);
-}
-
-function addLinkItemToDOM(text, url) {
-  var list = document.getElementById('todo');
-
-  var item = document.createElement('li');
-  var textElement = document.createElement('span');
-  textElement.classList.add('text');
-  textElement.innerHTML = '<a href="' + url + '" target="_blank" class="link">' + text + '</a>';
-  item.appendChild(textElement);
-
-  var buttons = document.createElement('div');
-  buttons.classList.add('buttons');
-
-  var remove = document.createElement('button');
-  remove.classList.add('remove');
-  remove.innerHTML = removeSVG;
-  remove.addEventListener('click', removeItem);
-  buttons.appendChild(remove);
-
-  var link = document.createElement('a');
-  link.href = url;
-  link.target = '_blank';
-  link.classList.add('link');
-  var linkIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  linkIcon.classList.add('link-icon');
-  linkIcon.setAttribute('viewBox', '0 0 24 24');
-  linkIcon.innerHTML = '<path class="fill" d="M9.09 15a4.92 4.92 0 0 0 7-7l-1.5-1.5a6.47 6.47 0 0 1-7.74 7.74l-1.5 1.5A8.47 8.47 0 0 0 9.09 15zm1.41-5a2.91 2.91 0 0 1 4.09-4.09l-1.42-1.42a4.92 4.92 0 0 0-7 7l1.42 1.42z"></path>';
-  link.appendChild(linkIcon);
-  buttons.appendChild(link);
-
-  item.appendChild(buttons);
   list.insertBefore(item, list.childNodes[0]);
 }
