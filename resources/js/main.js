@@ -29,6 +29,7 @@ document.getElementById('add').addEventListener('click', function() {
 
         dataObjectUpdated();
         document.getElementById('item').value = '';
+        location.reload()
     }
 
     if (value === "@copy") {
