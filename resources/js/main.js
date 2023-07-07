@@ -63,6 +63,7 @@ document.getElementById('item').addEventListener('keydown', function(e) {
 
         dataObjectUpdated();
         document.getElementById('item').value = '';
+        location.reload();
     }
 
     if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value.includes("@copy")) {
