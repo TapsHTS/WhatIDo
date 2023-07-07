@@ -98,6 +98,8 @@ document.getElementById('removeCategory').addEventListener('click', function(e) 
         [].forEach.call(items, function(item) {
             item.style.display = 'block';
         });
+        document.getElementById('item').name = 'Principale';
+        document.getElementById('item').placeholder = 'Entrer une tâche pour Principale';
     }
 
 })
