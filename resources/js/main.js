@@ -18,12 +18,10 @@ document.getElementById('add').addEventListener('click', function () {
     data = JSON.parse(restValue)
     dataObjectUpdated();
     document.getElementById('item').value = '';
-    location.reload();
   }
 
 
   if (value === "@copy") {
-    navigator.clipboard.writeText(localStorage.getItem('todoList'));
     document.getElementById('localstorage').innerText = localStorage.getItem('todoList');
     document.getElementById('item').value = '';
   }
@@ -44,11 +42,9 @@ document.getElementById('item').addEventListener('keydown', function (e) {
     data = JSON.parse(restValue)
     dataObjectUpdated();
     document.getElementById('item').value = '';
-    location.reload();
   }
 
   if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value.includes("@copy")) {
-    navigator.clipboard.writeText(localStorage.getItem('todoList'));
     document.getElementById('localstorage').innerText = localStorage.getItem('todoList');
     document.getElementById('item').value = '';
   }

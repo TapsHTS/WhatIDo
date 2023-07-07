@@ -1,7 +1,7 @@
 {
-    "background_color": "047cda",
-    "theme_color": "047cda",
-    "description": "Todo List App",
+    "background_color": "25b99a",
+    "theme_color": "25b99a",
+    "description": "TodoList App",
     "display": "standalone",
     "icons": [
       {
@@ -12,5 +12,5 @@
     ],
     "name": "WhatIdo",
     "short_name": "WhatIdo",
-    "start_url": "/WhatIDo"
+    "start_url": "/list"
   }
