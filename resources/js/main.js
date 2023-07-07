@@ -70,7 +70,7 @@ document.getElementById('item').addEventListener('keydown', function(e) {
     }
 });
 document.getElementById('addCategory').addEventListener('click', function() {
-    var category = prompt('Enter a category name');
+    var category = prompt('Entrer le nom de la catégorie:');
     if (category) {
         data.categories.push(category);
         dataObjectUpdated();
