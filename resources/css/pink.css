@@ -261,8 +261,8 @@ ul.todo#completed:after {
 #categoryList li {
     margin-bottom: 10px;
     display: inline-block;
-    margin-right: 2px;
-    margin-left: 2px;
+    margin-right: 3px;
+    margin-left: 3px;
 }
 
 #buttonCatego {
