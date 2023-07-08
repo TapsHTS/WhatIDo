@@ -177,7 +177,7 @@ ul.todo#completed li .buttons button.complete svg {
 }
 
 ul.todo:not(#completed) li .buttons button.complete:hover svg {
-    background: rgba(37, 185, 154, 0.75);
+    background: #047CDA
 }
 
 ul.todo:not(#completed) li .buttons button.complete:hover svg .fill {
@@ -261,8 +261,8 @@ ul.todo#completed:after {
 #categoryList li {
     margin-bottom: 10px;
     display: inline-block;
-    margin-right: 2px;
-    margin-left: 2px;
+    margin-right: 3px;
+    margin-left: 3px;
 }
 
 #buttonCatego {
