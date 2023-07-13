@@ -37,14 +37,38 @@ document.getElementById('add').addEventListener('click', function() {
         document.getElementById('item').value = '';
     }
 
-    if (value && !value.includes("@paste") && !value.includes("@copy")) {
+    if (value.includes("@categoname")) {
+        // change the name of the category which is selected (check if is not Principale)
+        var category = document.getElementById('item').name;
+        if (category === 'Principale') {
+            console.log("Vous ne pouvez pas renommer la catégorie principale")
+            return false
+        }
+        if (category) {
+            var newCategory = value.replace("@categoname", "")
+            data.categories[data.categories.indexOf(category)] = newCategory;
+            // change all items with that category
+            var lis = document.querySelectorAll('[data-category="' + category + '"]');
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].dataset.category = newCategory;
+            }
+            dataObjectUpdated();
+            var items = document.querySelectorAll('#todo li, #completed li');
+            [].forEach.call(items, function(item) {
+                item.style.display = 'block';
+            })
+            document.getElementById('item').value = '';
+        }
+    }
+
+    if (value && !value.includes("@paste") && !value.includes("@copy") && !value.includes("@categoname")) {
         addItem(value);
     }
 });
 
 document.getElementById('item').addEventListener('keydown', function(e) {
     var value = this.value;
-    if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value && !value.includes("@paste") && !value.includes("@copy")) {
+    if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value && !value.includes("@paste") && !value.includes("@copy") && !value.includes("@categoname")) {
         addItem(value);
     }
 
@@ -66,7 +90,31 @@ document.getElementById('item').addEventListener('keydown', function(e) {
         location.reload();
     }
 
-    if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value.includes("@copy")) {
+    if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value.includes("@categoname")) {
+        // change the name of the category which is selected (check if is not Principale)
+        var category = document.getElementById('item').name;
+        if (category === 'Principale') {
+            console.log("Vous ne pouvez pas renommer la catégorie principale")
+            return false
+        }
+        if (category) {
+            var newCategory = value.replace("@categoname", "")
+            data.categories[data.categories.indexOf(category)] = newCategory;
+            // change all items with that category
+            var lis = document.querySelectorAll('[data-category="' + category + '"]');
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].dataset.category = newCategory;
+            }
+            dataObjectUpdated();
+            var items = document.querySelectorAll('#todo li, #completed li');
+            [].forEach.call(items, function(item) {
+                item.style.display = 'block';
+            })
+            document.getElementById('item').value = '';
+        }
+    }
+
+    if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value.includes("@copy") && !value.includes("@paste")) {
         document.getElementById('localstorage').innerText = localStorage.getItem('todoList');
         document.getElementById('item').value = '';
     }
@@ -164,6 +212,9 @@ function dataObjectUpdated() {
             document.getElementById('showAll').addEventListener('click', function() {
                 [].forEach.call(items, function(item) {
                     item.style.display = 'block';
+                    document.getElementById('item').placeholder = 'Entrer une tâche pour Principale'
+                        // change the name of the item 
+                    document.getElementById('item').name = "Principale";
                 });
             });
 
